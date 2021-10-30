@@ -1,9 +1,10 @@
-import Logo from "../components/Logo";
+import Header from "../components/Header";
+
 
 const Home = () => {
     return (
         <div>
-            <Logo />
+            <Header />
         </div>
     )
 }
