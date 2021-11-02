@@ -6,7 +6,7 @@ const Connexion = () => {
 
 
     return (
-        <div >
+        <div>
             <div className="logo header-connect" >
                 <img src='./img/logo.png' alt="logo Groupomania" />   
             </div>
