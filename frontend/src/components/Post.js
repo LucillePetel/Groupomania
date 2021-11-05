@@ -2,7 +2,7 @@ import React from 'react';
 
 const Post = () => {
     return (
-        <div className="post">
+        <article className="post">
             <div className="location-post">
                 <div></div>
                 <div></div>    
@@ -14,20 +14,20 @@ const Post = () => {
 
             </div>
             <div className="counter-like">
-
+                <i class="fas fa-heart"></i>
             </div>
-            <div className="Share">
-                {/*<a>
-                    <span></span>
+            <div className="share">
+                <a href="#">
+                    <i class="far fa-comment">Commentaires</i>
                 </a>
-                <a>
-                    <span></span>
+                <a href="#">
+                    <i class="far fa-heart">Likes</i>
                 </a>
-                <a>
-                    <span></span>
-                </a>*/}
+                <a href="#">
+                    <i class="far fa-share-square">partager</i>
+                </a>
             </div>        
-        </div>
+        </article>
     );
 };
 

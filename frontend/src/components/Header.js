@@ -11,7 +11,7 @@ const Header = () => {
                 <img src='./img/logo.png' alt="logo Groupomania" />   
             </div>
             <div>
-
+                
             </div>
         </header>
         
