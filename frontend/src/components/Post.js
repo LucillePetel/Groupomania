@@ -17,14 +17,17 @@ const Post = () => {
                 <i class="fas fa-heart"></i>
             </div>
             <div className="share">
+                {/* eslint-disable-next-line*/}
                 <a href="#">
-                    <i class="far fa-comment">Commentaires</i>
+                    <i class="far fa-comment"> Commentaires</i>
                 </a>
+                {/* eslint-disable-next-line*/}
                 <a href="#">
-                    <i class="far fa-heart">Likes</i>
+                    <i class="far fa-heart"> Likes</i>
                 </a>
+                {/* eslint-disable-next-line*/}
                 <a href="#">
-                    <i class="far fa-share-square">partager</i>
+                    <i class="far fa-share-square"> Partager</i>
                 </a>
             </div>        
         </article>
