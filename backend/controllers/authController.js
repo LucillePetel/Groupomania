@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 const passwordValidator = require('password-validator');
+const User = require('../models/userModel')
 
-require('dotenv').config(); 
 
 const passwordSchema = new passwordValidator();
 
@@ -15,7 +15,16 @@ passwordSchema
 .has().digits(2) // 2 chiffres min
 .has().not().spaces() // Pas d'espaces
 
+//Inscription
+exports.signUp = (req, res, next) => {
+    let name = req.body.name;
+    let firstName = req.body.firstname;
+    let email = req.body.email;
+    let password = req.body.password;
 
-exports.signUp = (req, res)
+    if (name == null || firstName == null || email == null || password == null) {
+        res.status(400).json({ error : "Tous les champs doivent être remplis" })
+    }
+}
 
  

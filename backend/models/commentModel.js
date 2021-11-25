@@ -1,11 +1,16 @@
-const Sequelize = require("sequelize"); 
-const sequelize = require("../config/db");
+const { Model } = require("sequelize")
 
-const Comment = sequelize.define("comment", {
-    comment: {
-        type: Sequelize.DataTypes.STRING,
-        AllowNull: false,
-    },
-})
-
-module.exports = Comment;
+module.exports = (sequelize, DataTypes) => {
+    class Comment extends Model {}
+    Comment.init({
+        comment: {
+            type: Sequelize.DataTypes.STRING,
+            AllowNull: false,
+        },
+    }, 
+    {
+        sequelize,
+        modelName: "Comment"
+    })
+    return Comment
+}
