@@ -4,6 +4,8 @@ const auth = require("../middlewares/authMiddleware");
 
 
 router.get("/", userCtrl.getAllUsers);
+router.get('/:id', userCtrl.getOneUser);
+router.delete("/deleteAccount/:id", auth, userCtrl.desactivateAccount);
 
 
 
