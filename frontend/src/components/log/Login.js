@@ -45,7 +45,7 @@ const Login = () => {
             <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
             <div className="password-err"></div>
             <br />
-            <input type="submit" value="Se connecter" />
+            <input type="submit" value="Se connecter" className="button" />
         </form> 
     );
 };
