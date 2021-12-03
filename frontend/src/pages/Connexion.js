@@ -1,26 +1,15 @@
-import Login from "../components/Login";
-import SignUp from '../components/Signup';
+import Connect from "../components/log/Connect";
 
 
 const Connexion = () => {
 
 
     return (
-        <div>
-            <div className="logo header-connect" >
-                <img src='./img/logo.png' alt="logo Groupomania" />   
-            </div>
+        <div className="connect-page"> 
             <div className="log">
-                <div className="contain-log">
-                    <Login />
-                    <button>Connexion</button>
-                </div>
-                <div className="contain-log">
-                    <SignUp />
-                    <button >Inscription</button>
-                </div>
-              
+                <Connect />
             </div>
+
 
         </div>
     );

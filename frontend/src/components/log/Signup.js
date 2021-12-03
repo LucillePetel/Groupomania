@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios'
+
 
 const SignUp = () => {
     return (
         <section>
-            <h2>Inscrivez-vous</h2>
             <form>
                 <label htmlFor="name">Nom</label><br />
                 <input type="text"></input><br />
@@ -12,10 +13,11 @@ const SignUp = () => {
                 <label htmlFor="email">Adresse email</label><br />
                 <input type="email"></input><br />
                 <label htmlFor="password">Mot de passe</label><br />
-                <input type="password"></input>
+                <input type="password"></input><br />
+                <input type="submit" value="S'inscrire'" />
             </form>
         </section>
     );
 };
-
 export default SignUp;
+

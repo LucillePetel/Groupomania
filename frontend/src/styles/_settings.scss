@@ -1,6 +1,11 @@
+$color-1: #ffffff;
+$color-2: #d02718;
+$color-3: #dddcda;
+
+
 body {
     width: 100%;
-    background: url(../asset/background.jpg) center;
+    background: url(../asset/background.jpg) center fixed;
     margin: 0;   
 }
 
@@ -14,8 +19,8 @@ button {
 	background:linear-gradient(to bottom, #c62d1f 5%, #e08c86 100%);
 	background-color:#c62d1f;
 	border-radius:18px;
-	border:1px solid #d02718;
-	color:#ffffff;
+	border:1px solid $color-2;
+	color:$color-1;
 	font-family:Arial;
 	font-size:17px;
 	padding:7px 25px;
@@ -34,7 +39,7 @@ input {
     font-size: 13px;
     border-width: 3px;
     border-color: #b8aeae;
-    background-color: #FFFFFF;
+    background-color: $color-1;
     color: #000000;
     border-style: hidden;
     border-radius: 14px;
