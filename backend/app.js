@@ -29,14 +29,14 @@ app.use((req, res, next) => {
 //Route file
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
-const postRoutes = require("./routes/postRoutes");
-const commentRoutes = require("./routes/commentRoutes");
+//const postRoutes = require("./routes/postRoutes");
+//const commentRoutes = require("./routes/commentRoutes");
 
 //Routes    
 app.use("/api/auth", authRoutes);
 app.use('/api/user', userRoutes)
-app.use("/api/post", postRoutes);
-app.use("/api/comment", commentRoutes);
+//app.use("/api/post", postRoutes);
+//app.use("/api/comment", commentRoutes);
 
 //Export
 module.exports = app;

@@ -6,9 +6,9 @@ const SignUp = () => {
     return (
         <section>
             <form>
-                <label htmlFor="name">Nom</label><br />
+                <label htmlFor="lastname">Nom</label><br />
                 <input type="text"></input><br />
-                <label htmlFor="first-name">Prenom</label><br />
+                <label htmlFor="firstname">Prenom</label><br />
                 <input type="text"></input><br />
                 <label htmlFor="email">Adresse email</label><br />
                 <input type="email"></input><br />
