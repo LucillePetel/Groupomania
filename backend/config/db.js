@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
 
 const sequelize = new Sequelize(
     process.env.DATABASE_DB, 
@@ -8,6 +9,7 @@ const sequelize = new Sequelize(
         dialect: "mysql",
         host: "localhost",
     });
+
 
 module.export = sequelize; 
 

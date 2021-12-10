@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
-const { restart } = require('nodemon');
 const User = require('../models/userModel')
 
 
@@ -35,7 +34,7 @@ exports.signUp = (req, res, next) => {
             })
             .then((user) => {
                 if (user) {
-                    return restart.status(201).json({ message:'Utilisateur créé !' })
+                    return res.status(201).json({ message:'Utilisateur créé !' })
                 }
             })
             .catch((err) => {res.status(401).json({ err })});
