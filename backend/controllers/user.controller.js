@@ -1,9 +1,8 @@
+const UserModel = require('../models/user');
+require("dotenv").config({path: '../config/.env'});
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken'); 
-const User = require('../models/userModel')
+const jwt = require('jsonwebtoken');
 
-
-//Inscription
 exports.signUp = (req, res, next) => {
     let email = req.body.email;
 	let password = req.body.password;
@@ -16,15 +15,15 @@ exports.signUp = (req, res, next) => {
     }
 
     const nameRegex = /(.*[a-z]){3,30}/;
-    const emailRegex = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$'/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ 
+    const emailRegex = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/ 
 
     //Contrôle de la validité des champs
     if(nameRegex.test(lastName) && nameRegex.test(firstName) && emailRegex.test(email) && passwordRegex.test(password)) {
         //Hashage du password avec un salt de 10
         bcrypt.hash(password, 10)
             .then(hash => {
-                const user = new User({
+                const user = new UserModel({
                     lastName: lastName,
                     firstName: firstName,
                     email: email,
@@ -42,9 +41,6 @@ exports.signUp = (req, res, next) => {
         res.status(400).json({ message: 'informations incorrectes' })
     }
 }
-
-
-//Connexion 
 
 exports.login = (req, res, next) => {
     let email = req.body.email;
@@ -83,11 +79,3 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }))
     })
 }
-
-
-
-
-
-
-
- 

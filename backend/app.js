@@ -1,22 +1,21 @@
 const express = require('express'); 
-const path = require('path');
-require("dotenv").config();
-
-//Security 
-const helmet = require('helmet');
+const cookieParser = require("cookie-parser");
 
 
 //Init express app
 const app = express();
 
+const path = require('path');
+
+//Security 
+const helmet = require('helmet');
+
 //Helmet
 app.use(helmet());
 
+require("dotenv").config({path: './config/.env'});
 
-//Express parser 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+const { sequelize } = require('./models/index');
 
 //Middleware Cors
 app.use((req, res, next) => {
@@ -26,17 +25,36 @@ app.use((req, res, next) => {
     next();
     });
  
+
+//Express parser 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
+
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
+
 //Route file
-const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/user.routes");
 //const postRoutes = require("./routes/postRoutes");
 //const commentRoutes = require("./routes/commentRoutes");
 
 //Routes    
-app.use("/api/auth", authRoutes);
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRoutes);
 //app.use("/api/post", postRoutes);
 //app.use("/api/comment", commentRoutes);
+
+const dbConnect = async function () {
+    try {
+      await sequelize.authenticate();
+      console.log('Connexion à la basse de donnée');
+    } catch (error) {
+      console.error('connexion impossible:', error);
+    }
+  };
+  dbConnect();
 
 //Export
 module.exports = app;
