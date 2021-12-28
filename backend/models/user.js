@@ -1,17 +1,17 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('User', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    lastname: {
+    lastName: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
-    firstname: {
+    firstName: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     last_logon: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     admin: {
       type: DataTypes.BOOLEAN,
