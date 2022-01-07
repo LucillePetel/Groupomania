@@ -10,6 +10,7 @@ router.post('/signup', authCtrl.signUp);
 router.get('/', userCtrl.getAllUsers);
 router.get('/:id', userCtrl.getOneUser);
 router.put('/:id', userCtrl.modifyUser);
+router.delete('/:id', userCtrl.deleteProfil);
 
 
-module.exports = router;
+module.exports = router; 

@@ -15,7 +15,7 @@ exports.signUp = (req, res) => {
     }
 
     const nameRegex = /(.*[a-z]){3,30}/;
-    const emailRegex = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    const emailRegex = /[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}$/; 
 
     //Contrôle de la validité des champs
@@ -27,8 +27,8 @@ exports.signUp = (req, res) => {
                 firstName: firstName,
                 email: email,
                 password: hash
-            })
-    
+            })    
+            
                     .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
                     .catch(error => res.status(400).json({error}));
 
