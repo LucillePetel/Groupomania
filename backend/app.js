@@ -38,12 +38,12 @@ app.use('/images', express.static(path.join(__dirname, "images")));
 
 //Route file
 const userRoutes = require("./routes/user.routes");
-//const postRoutes = require("./routes/postRoutes");
-//const commentRoutes = require("./routes/commentRoutes");
+const postRoutes = require("./routes/post.routes");
+//const commentRoutes = require("./routes/comment.routes");
 
 //Routes    
 app.use('/api/user', userRoutes);
-//app.use("/api/post", postRoutes);
+app.use("/api/post", postRoutes);
 //app.use("/api/comment", commentRoutes);
 
 const dbConnect = async function () {
