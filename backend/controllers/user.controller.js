@@ -18,13 +18,11 @@ exports.getOneUser = (req, res) => {
 };
 
 exports.modifyUser = (req, res) => {
-    console.log(req.headers);
+
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, process.env.JWT_TOKEN);
     const userId = decodedToken.userId;
     
-    
-
     req.body.user = userId
 
     const userObject = req.file ? {
@@ -61,18 +59,3 @@ exports.deleteProfil = (req, res) => {
     .catch(error => res.status(404).json({ error: 'Une erreur s\'est produite' }));
 }
 
-/*exports.modifyUser = (req, res, next) => { 
-    db.User.findOne({ where: { id: req.params.id }})
-        .then((user) =>{
-            lastname = req.body.lastname;
-            firstname = req.body.firstname;
-            email = req.body.email;
-            imageprofil = req.body.imageprofil;
-            jobtitle = req.body.jobtitle;
-            bio = req.body.bio;
-            db.User.update()
-        .then(() => res.status(201).json({ message: 'Compte modifié !' }))
-        .catch(error => res.status(403).json({ error }));
-        })
-        .catch(error => res.status(500).json({error}))
-}*/

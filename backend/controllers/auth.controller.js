@@ -28,9 +28,9 @@ exports.signUp = (req, res) => {
                 email: email,
                 password: hash
             })    
-            
-                    .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                    .catch(error => res.status(400).json({error}));
+        
+                .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+                .catch(error => res.status(400).json({error}));
 
         });
   
@@ -48,18 +48,17 @@ exports.login = (req, res) => {
         return res.status(400).json({ message:"Une ou plusieurs informations sont manquantes" });
     }
 
-    UserModel.findOne({
+    db.User.findOne({
         where: {
-            email: email
+            email: req.body.email
         }
+    })
         .then(user => {
-            if (!user) {
-                return res.status(401).json({ message:"l'utilisateur n'existe pas !" });
-            }
-            bcrypt.compare(password, user.password)
-                .then (valid => {
-                    if (!valid) {
-                        return res.status(401).json({ message: "Le mot de passe est incorrecte !" });
+            if(user) {
+                bcrypt.compare(password, user.password)
+                .then(valid => {
+                    if(!valid) {
+                        return res.status(401).json({ error: 'Mot de passe incorrect' });
                     }
                     res.status(200).json({
                         message: "Connexion réussie",
@@ -71,8 +70,11 @@ exports.login = (req, res) => {
                         )
                     });
                 })
-                .catch(error => res.status(500).json({ error }));                
+                .catch(error => res.status(500).json({ error: 'Une erreur s\'est produite !' }));
+            } else {
+                return res.status(404).json({ error: 'Cet utilisateur n\'existe pas!' })
+            }
         })
-        .catch(error => res.status(500).json({ error }))
-    });
+        .catch(error => res.status(500).json({ error: 'Une erreur s\'est produite !' })) 
 };
+

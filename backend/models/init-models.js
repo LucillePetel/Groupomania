@@ -1,13 +1,11 @@
 var DataTypes = require("sequelize").DataTypes;
 var _comment = require("./comment");
-var _forum = require("./forum");
 var _post = require("./post");
 var _user = require("./user");
 var _vote = require("./vote");
 
 function initModels(sequelize) {
   var comment = _comment(sequelize, DataTypes);
-  var forum = _forum(sequelize, DataTypes);
   var post = _post(sequelize, DataTypes);
   var user = _user(sequelize, DataTypes);
   var vote = _vote(sequelize, DataTypes);
@@ -15,7 +13,6 @@ function initModels(sequelize) {
 
   return {
     comment,
-    forum,
     post,
     user,
     vote,

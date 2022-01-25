@@ -43,7 +43,7 @@ const postRoutes = require("./routes/post.routes");
 
 //Routes    
 app.use('/api/user', userRoutes);
-app.use("/api/post", postRoutes);
+app.use('/api/post', postRoutes);
 //app.use("/api/comment", commentRoutes);
 
 const dbConnect = async function () {
