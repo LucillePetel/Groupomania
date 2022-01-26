@@ -23,8 +23,8 @@ exports.signUp = (req, res) => {
         //Hashage du password avec un salt de 10
         bcrypt.hash(password, 10, function (err, hash) {
             const user = db.User.create({
-                lastName: lastName,
-                firstName: firstName,
+                lastname: lastName,
+                firstname: firstName,
                 email: email,
                 password: hash
             })    

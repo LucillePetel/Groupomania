@@ -1,49 +1,35 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Post', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    utilisateur_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    content: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    content_type: {
-      type: DataTypes.CHAR(1),
-      allowNull: true
-    },
-    vote: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: true
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Post extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      models.Post.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      })
+      models.Post.hasMany(models.Comment);
+      models.Post.hasMany(models.Vote);
+      
     }
+  }
+  Post.init({
+    user_id: DataTypes.INTEGER,
+    title: DataTypes.STRING,
+    content: DataTypes.STRING,
+    content_type: DataTypes.STRING,
+    vote: DataTypes.INTEGER,
+    date: DataTypes.DATE
   }, {
     sequelize,
-    tableName: 'post',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-    ]
+    modelName: 'Post',
   });
+  return Post;
 };

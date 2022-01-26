@@ -4,17 +4,20 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({path: './config/.env'});
 
 
-
-
 exports.getAllUsers = async (req, res) => {
     const users = await db.User.findAll();
     res.status(200).json(users);
 };
 
-exports.getOneUser = (req, res) => {
-    db.User.findOne( { where : {id:req.params.id}} )
-        .then((user) => res.status(200).json(user))
-        .catch(error => res.status(404).json({ error }));
+exports.getOneUser = async (req, res) => {
+    try {
+        const user = await db.User.findOne({
+          where: { id: req.params.id },
+        });
+        res.status(200).send(user);
+      } catch (error) {
+        return res.status(500).send({ error: "Erreur serveur" });
+      }
 };
 
 exports.modifyUser = (req, res) => {
@@ -27,7 +30,7 @@ exports.modifyUser = (req, res) => {
 
     const userObject = req.file ? {
         ...JSON.parse(req.body.user),
-        imageProfil: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        image_profil: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body}; 
 
     db.User.findOne({ where: { id: userId } })

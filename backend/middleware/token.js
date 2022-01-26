@@ -9,4 +9,6 @@ function getUserId(req) {
     return userId; 
 }
 
+
+
 module.exports.getUserId = getUserId; 
