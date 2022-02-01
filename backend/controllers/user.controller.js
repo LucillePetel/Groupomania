@@ -4,27 +4,30 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({path: './config/.env'});
 
 
+
 exports.getAllUsers = async (req, res) => {
     const users = await db.User.findAll();
     res.status(200).json(users);
 };
 
 exports.getOneUser = async (req, res) => {
-    try {
-        const user = await db.User.findOne({
-          where: { id: req.params.id },
-        });
-        res.status(200).send(user);
-      } catch (error) {
-        return res.status(500).send({ error: "Erreur serveur" });
-      }
+    const id = req.params.id;
+    db.User.findOne({
+        attributes: [ `id`,`lastname`,`firstname`,`email` ],
+        where: { id: id }
+    })
+    .then(user => {
+        if(user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ error: 'Utilisateur non trouvé' })
+        }
+    })
+    .catch(error => res.status(404).json({ error: `Une erreur s\'est produite !` }));
 };
 
 exports.modifyUser = (req, res) => {
 
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, process.env.JWT_TOKEN);
-    const userId = decodedToken.userId;
     
     req.body.user = userId
 

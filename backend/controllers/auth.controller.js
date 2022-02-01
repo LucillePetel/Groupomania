@@ -63,6 +63,7 @@ exports.login = (req, res) => {
                     res.status(200).json({
                         message: "Connexion réussie",
                         userId: user.id,
+                        userName: user.firstname + ' ' + user.lastname,
                         token: jwt.sign( 
                             { userId: user.id }, 
                             process.env.JWT_TOKEN, 
@@ -71,6 +72,7 @@ exports.login = (req, res) => {
                     });
                 })
                 .catch(error => res.status(500).json({ error: 'Une erreur s\'est produite !' }));
+                
             } else {
                 return res.status(404).json({ error: 'Cet utilisateur n\'existe pas!' })
             }
