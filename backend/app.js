@@ -1,5 +1,7 @@
 const express = require('express'); 
 const cookieParser = require("cookie-parser");
+const cors = require('cors');
+
 
 
 //Init express app
@@ -12,6 +14,9 @@ const helmet = require('helmet');
 
 //Helmet
 app.use(helmet());
+
+app.use(cors());
+
 
 require("dotenv").config({path: './config/.env'});
 

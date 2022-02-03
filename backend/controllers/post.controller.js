@@ -11,7 +11,7 @@ exports.createPost = async (req, res) => {
     
     try {
         const user = await db.User.findOne({
-           // attributes: ["firstName", "lastName", "id"],
+            attributes: ["firstName", "lastName", "id"],
             where: { id: userId }
         })
         
@@ -27,6 +27,10 @@ exports.createPost = async (req, res) => {
                 content: req.body.content, 
                 UserId: user.id
             })
+            //console.log(title);
+            //console.log(include);
+            //console.log(content);
+            console.log(UserId);
             res.status(200).json({ post: post, message: 'Votre message est publié !'});
         } else {
             res.status(400).json({ error: 'Impossible de publier votre message'})

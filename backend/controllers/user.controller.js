@@ -11,6 +11,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.getOneUser = async (req, res) => {
+    
     const id = req.params.id;
     db.User.findOne({
         attributes: [ `id`,`lastname`,`firstname`,`email` ],
@@ -20,16 +21,15 @@ exports.getOneUser = async (req, res) => {
         if(user) {
             res.status(200).json(user);
         } else {
-            res.status(404).json({ error: 'Utilisateur non trouvé' })
+            res.status(401).json({ error: 'Utilisateur non trouvé' })
         }
     })
     .catch(error => res.status(404).json({ error: `Une erreur s\'est produite !` }));
 };
 
 exports.modifyUser = (req, res) => {
-
     
-    req.body.user = userId
+    const userId = req.params.id;
 
     const userObject = req.file ? {
         ...JSON.parse(req.body.user),
