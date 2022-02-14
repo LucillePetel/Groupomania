@@ -63,11 +63,54 @@ exports.createPost = async (req, res) => {
 
 exports.modifyPost = (req, res) => {
 
+    const postObject = req.file? {
+        ...JSON.parse(req.body.post),
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${
+          req.file.filename
+        }`
+      } : { ...req.body }
 
+      console.log(req.params.postId);
+
+      db.Post.findOne({
+        where: {  id: req.params.postId },
+    })
+    .then(findPost => {
+        if(findPost) {
+            db.Post.update(postObject, {
+                where: { id: req.params.postId}
+            })
+            .then(post => res.status(200).json({ message: 'Votre message a bien été modifié !' }))
+            .catch(error => res.status(400).json({ error: 'Une erreur s\'est produite !' }))
+        }
+        else {
+            res.status(404).json({ error: 'Message non trouvé' });
+        }
+    })
+    .catch(error => res.status(500).json({ error: 'Une erreur s\'est produite !' }));
+      
 
 }
 
 exports.deletePost = (req, res) => {
+
+    db.Post.findOne({
+        attributes: ['id'],
+        where: { id: req.params.postId }
+    })
+    .then(post => {
+        if(post) {
+                db.Post.destroy({ 
+                    where: { id: req.params.postId } 
+                })
+                .then(() => res.status(200).json({ message: 'Votre message a été supprimé' }))
+                .catch(() => res.status(500).json({ error: '⚠ Oops, une erreur s\'est produite !' }));
+            
+        } else {
+            return res.status(404).json({ error: 'Message non trouvé'})
+        }
+    })
+    .catch(error => res.status(500).json({ error: '⚠ Oops, une erreur s\'est produite !' }));
 
 }
 
