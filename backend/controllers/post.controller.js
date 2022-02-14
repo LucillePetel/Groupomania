@@ -104,13 +104,13 @@ exports.deletePost = (req, res) => {
                     where: { id: req.params.postId } 
                 })
                 .then(() => res.status(200).json({ message: 'Votre message a été supprimé' }))
-                .catch(() => res.status(500).json({ error: '⚠ Oops, une erreur s\'est produite !' }));
+                .catch(() => res.status(500).json({ error: 'Ue erreur s\'est produite !' }));
             
         } else {
             return res.status(404).json({ error: 'Message non trouvé'})
         }
     })
-    .catch(error => res.status(500).json({ error: '⚠ Oops, une erreur s\'est produite !' }));
+    .catch(error => res.status(500).json({ error: 'Une erreur s\'est produite !' }));
 
 }
 
