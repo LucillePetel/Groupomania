@@ -6,8 +6,16 @@ require('dotenv').config({path: './config/.env'});
 
 
 exports.getAllUsers = async (req, res) => {
-    const users = await db.User.findAll();
-    res.status(200).json(users);
+    
+    try{
+        const users = await db.User.findAll();
+        res.status(200).json(users); 
+    } catch (error) {
+        return res.status(500).send({
+          error: "Une erreur est survenu lors de la récupération des utilisateurs ",
+        });
+      }
+    
 };
 
 exports.getOneUser = async (req, res) => {

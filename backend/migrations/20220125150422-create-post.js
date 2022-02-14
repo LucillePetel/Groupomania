@@ -24,16 +24,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      content_type: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
       vote: {
         type: Sequelize.INTEGER,
-        allowNull: true
-      },
-      date: {
-        type: Sequelize.DATE,
         allowNull: true
       },
       createdAt: {
