@@ -10,7 +10,7 @@ exports.getAllPosts = async (req, res) => {
     try {
         const posts = await db.Post.findAll(
             
-           /* {
+        {
           attributes: ["id", "title", "content", "user_Id", "createdAt"],
           order: [["createdAt", "ASC"]],
           include: [
@@ -19,7 +19,7 @@ exports.getAllPosts = async (req, res) => {
               attributes: ["firstname", "lastname", "id"],
             },
           ],
-        }*/)
+        })
         res.status(200).json(posts);
         
       } catch (error) {

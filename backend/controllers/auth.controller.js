@@ -45,7 +45,7 @@ exports.login = (req, res) => {
 
     //Verification de la présence de chaque champs
     if ( !email || !password ) {
-        return res.status(400).json({ message:"Une ou plusieurs informations sont manquantes" });
+        return res.status(400).json({ error:"Une ou plusieurs informations sont manquantes" });
     }
 
     db.User.findOne({
@@ -55,20 +55,23 @@ exports.login = (req, res) => {
     })
         .then(user => {
             if(user) {
+                const maxAge = /*3 * 24 * 60 **/ 60 * 1000;
+                const token = jwt.sign( 
+                    { userId: user.id }, 
+                    process.env.JWT_TOKEN, 
+                    { expiresIn: maxAge }
+                )
+
                 bcrypt.compare(password, user.password)
                 .then(valid => {
                     if(!valid) {
-                        return res.status(401).json({ error: 'Mot de passe incorrect' });
+                        return res.status(401).json({ error: 'Mot de passe invalide' });
                     }
+                    res.cookie('jwt', token, { httpOnly: true, maxAge})
                     res.status(200).json({
                         message: "Connexion réussie",
                         userId: user.id,
                         userName: user.firstname + ' ' + user.lastname,
-                        token: jwt.sign( 
-                            { userId: user.id }, 
-                            process.env.JWT_TOKEN, 
-                            { expiresIn: '24h' }
-                        )
                     });
                 })
                 .catch(error => res.status(500).json({ error: 'Une erreur s\'est produite !' }));

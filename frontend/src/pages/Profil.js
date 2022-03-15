@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from '../components/Header';
-
+import Navbar from '../components/Navbar';
+import PublishPost from '../components/post/PublishPost';
 
 const Profil = () => {
     return (
         <div>
-            <Header />
+            <Navbar />
+            <PublishPost />
         </div>
     );
 };

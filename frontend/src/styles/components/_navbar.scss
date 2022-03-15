@@ -1,0 +1,30 @@
+.navbar {
+    //height: 4rem; 
+    padding: 0 3rem 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    img {
+        width: 45%;
+    }
+    .info-connect{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .button-exit {
+        margin-left: 2.5rem;
+        background-color: $white;
+        border-color: $color-1;
+        border-style: solid;
+        border-radius: 50px;
+        width: 9rem;
+        height: 2rem;
+        box-shadow: 8px 0px 11px $black;
+        font-family: 'amble';
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+}

@@ -1,19 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom"
-import Connexion from './pages/Connexion';
-import Forum from './pages/Forum';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Connect from './pages/Connect';
 import Home from './pages/Home';
 import Profil from './pages/Profil';
 
 const App = () => {
     return (
         <BrowserRouter>
-            <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/profil" exact component={Profil} />
-                <Route path="/forum" exact component={Forum} />
-                <Route path="/connect" exact component={Connexion} />
-            </Switch>
+            <Routes>
+                <Route path="/" exact element={<Home />} />
+                <Route path="/profil" exact element={<Profil />} />
+                <Route path="/connect" exact element={<Connect />} />
+            </Routes>
         </BrowserRouter>
     );
 };

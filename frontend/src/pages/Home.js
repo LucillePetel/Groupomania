@@ -1,16 +1,14 @@
-import Header from "../components/Header";
-import Post from "../components/Post";
-
+import React from 'react';
+import Navbar from '../components/Navbar';
+import PublishPost from '../components/post/PublishPost';
 
 const Home = () => {
     return (
-        <div className="contain-pages">
-            <Header />
-            <Post />
+        <div>
+            <Navbar />
+            <PublishPost />
         </div>
-    )
-}
+    );
+};
 
-
-
-export default Home; 
+export default Home;

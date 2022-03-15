@@ -15,7 +15,6 @@ const helmet = require('helmet');
 //Helmet
 app.use(helmet());
 
-app.use(cors());
 
 
 require("dotenv").config({path: './config/.env'});
@@ -23,13 +22,15 @@ require("dotenv").config({path: './config/.env'});
 const { sequelize } = require('./models/index');
 
 //Middleware Cors
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
-    });
- 
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'exposedHeaders': ['sessionId'],
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}
+app.use(cors(corsOptions));
 
 //Express parser 
 app.use(express.json());

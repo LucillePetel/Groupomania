@@ -1,0 +1,65 @@
+
+.connect-form {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+.form-contain {
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    background-color: $color-1;
+    border-radius: 15px;
+    ul {
+        padding: 0;
+    }
+    li {
+        background-color: $white;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        margin-top: 1.5rem;
+        border-color: $color-1;
+        border-style: solid;
+        border-radius: 50px;
+        box-shadow: 8px 0px 11px $black;
+        &:hover {
+            transform: scale(1.07);
+            cursor: pointer;
+        }
+    }
+}
+
+#login-form, #signup-form {
+    padding-left: 10%;
+    input {
+        margin-top: 1rem;
+        padding: 7px;
+        border-color: $color-1;
+        background-color: $white;
+        border-style: solid;
+        box-shadow: 8px 0px 11px $black;
+    }
+    input[type='submit'] {
+        cursor: pointer;
+        font-family: 'amble';
+        font-size: 17px;
+        font-weight: bold;
+        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+        margin-top: 1rem;
+        border-radius: 50px;
+        box-shadow: 8px 0px 11px $black;
+        &:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+    }
+    label {
+        padding-left: 0.7rem;
+    }
+ 
+}
+
+.logo-connect {
+    padding:  1rem 0 1rem 3rem;
+}
+

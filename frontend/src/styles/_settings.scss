@@ -1,56 +1,26 @@
-$color-1: #ffffff;
-$color-2: #d02718;
-$color-3: #dddcda;
+@font-face {
+    font-family: 'amble';
+    src: url('font/amble/Amble-Regular.ttf');
+    src: url('font/amble/Amble-Bold.ttf');
+    src: url('font/amble/Amble-BoldItalic.ttf');
+    src: url('font/amble/Amble-Italic.ttf');    
+
+}
+
+
+
+$color-1: #ffd7d7;
+$color-2: #fd2d01;
+$black: rgb(40, 40, 40);
+$white: rgb(253, 253, 253);
 
 
 body {
-    width: 100%;
-    background: url(../asset/background.jpg) center fixed;
-    margin: 0;   
-}
-
-#root {
-    width: 100%;
+    font-family: 'amble';
+    font-weight: bold;
 }
 
 
-button, .button {
-    box-shadow: 3px 4px 0px 0px #8a2a21;
-	background:linear-gradient(to bottom, #c62d1f 5%, #e08c86 100%);
-	background-color:#c62d1f;
-	border-radius:18px;
-	border:1px solid $color-2;
-	color:$color-1;
-	font-family:Arial;
-	font-size:17px;
-	padding:7px 25px;
-	text-shadow:0px 1px 0px #810e05;
-    margin: 15px;
-    cursor: pointer;
+li {
+    list-style: none;
 }
-
-label {
-    margin-left: 15px;
-    font-size: 18px;
-}
-
-input {
-    margin: 8px;
-    padding: 8px;
-    font-size: 13px;
-    border-width: 3px;
-    border-color: #b8aeae;
-    background-color: $color-1;
-    color: #000000;
-    border-style: hidden;
-    border-radius: 14px;
-    box-shadow: 2px 8px 13px rgba(66,66,66,.63);
-    text-shadow: 0px 0px 5px rgba(66,66,66,.75);
-   
-}
-
-input:focus {
-    outline:none;
-}
-
-
